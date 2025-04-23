@@ -9,6 +9,10 @@ WORKDIR /app
 # Transfer all files from current directory into container
 COPY . .
 
+# Determine required environment variables for the application
+ENV NODE_ENV=production   
+ENV DB_HOST=item-db
+
 # Install required packages during image building
 # Executed during Image build
 RUN npm install --production --unsafe-perm && npm run build

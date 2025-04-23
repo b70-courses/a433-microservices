@@ -13,13 +13,13 @@ services:
     volumes:                  # Specify volume to use
       - app-db:/data/db       #   Use app-db volume & link to /data/db directory inside the container
   item-app:                             # The container name for the application instance
-    image: edgarcornelius/item-app:v1   # Image to use, will be retrieved from Dockerhub if the image does not exist on local
+    image: ghcr.io/b70-courses/item-app:v1   # Image to use, will be retrieved from Dockerhub if the image does not exist on local
     restart: always                     # always restart the container when stopped
     ports:                              # Specify port to expose
       - 80:8080                         #   Exposes & connect port 80 from host to 8080 inside the container
-    environment:                        # Environment variable which the application can/will use
-      - NODE_ENV=production             #   Set the application to 'production mode'
-      - DB_HOST=item-db                 #   Set the application database host to follow 'item-db' container ip address
+    # environment:                        # Environment variable which the application can/will use
+    #   - NODE_ENV=production             #   Set the application to 'production mode'
+    #   - DB_HOST=item-db                 #   Set the application database host to follow 'item-db' container ip address
     depends_on:                         # Make the container initialization depends on other instance 
       item-db:                          #   The container to depends on
         condition: service_started      #     This condition will only let 'item-app' container to be started if dependant container 'item-db' is started
